@@ -41,13 +41,13 @@ class Logger():
 		with open(fileName, "a") as myfile:
 			myfile.write("{}\n".format(content))
 
-	def log(self, content, verbose = True):
+	def log(self, content, fileName = LOG_FILE_NAME, verbose = True):
 		if verbose:
 			print(content)
-		self.q.put({"fileName":LOG_FILE_NAME, "content":content})
+		self.q.put({"fileName":fileName, "content":content})
 	
 	def debug(self,content):
-		self.log(content,self.verbose)
+		self.log(content,verbose=self.verbose)
 
 	def success(self, item):
 		item.verifyKey("counter")
