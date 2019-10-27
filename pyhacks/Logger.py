@@ -41,6 +41,22 @@ class Logger():
 		with open(fileName, "a") as myfile:
 			myfile.write("{}\n".format(content))
 
+	def green(self, content, fileName = LOG_FILE_NAME, verbose = True):
+		if verbose:
+			print('\033[32m', content, '\033[0m', sep='')
+		self.q.put({"fileName":fileName, "content":content})
+
+	def red(self, content, fileName = LOG_FILE_NAME, verbose = True):
+		if verbose:
+		    print('\033[31m', content, '\033[0m', sep='')
+
+		self.q.put({"fileName":fileName, "content":content})
+
+	def yellow(self, content, fileName = LOG_FILE_NAME, verbose = True):
+		if verbose:
+			    print('\033[33m', content, '\033[0m', sep='')
+		self.q.put({"fileName":fileName, "content":content})
+
 	def log(self, content, fileName = LOG_FILE_NAME, verbose = True):
 		if verbose:
 			print(content)
