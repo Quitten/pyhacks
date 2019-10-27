@@ -11,7 +11,6 @@ setup(
   download_url = 'https://github.com/user/reponame/archive/v_01.tar.gz',    # I explain this later on
   keywords = ['threads','queue'],
   install_requires=[
-          'csv',
           'uuid',
       ],
   classifiers=[
