@@ -1,10 +1,16 @@
 from distutils.core import setup
+
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
 setup(
   name = 'pyhacks',
   packages = ['pyhacks'],
-  version = '1.0.6',
+  version = '1.0.7',
   license='MIT',
   description = 'Ease developers to use queue/threads functions to handle big amount of data',
+  long_description=long_description,
+  long_description_content_type="text/markdown",
   author = 'Barak Tawily',
   author_email = 'barak.tawily@gmail.com',
   url = 'https://github.com/Quitten/pyhacks',
