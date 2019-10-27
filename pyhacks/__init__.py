@@ -14,4 +14,6 @@ __author__ = 'Barak Tawily'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2019 Barak Tawily'
 
-from pyhacks import *
+from QueueThreads import QueueThreads
+from Parser import Parser
+from Logger import Logger
