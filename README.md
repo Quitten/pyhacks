@@ -10,8 +10,8 @@ from pyhacks import Logger, QueueThreads, Parser
 
 if __name__ == "__main__":
 	def handleItem(item):
-        content = "{},{}".format(item.get("Name"),item.get("Phone 1 - Value"))
-        logger.log(content)
+        	content = "{},{}".format(item.get("Name"),item.get("Phone 1 - Value"))
+        	logger.log(content, "output.txt")
 		return True
 
 	logger = Logger()
