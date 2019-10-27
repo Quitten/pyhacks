@@ -8,7 +8,7 @@ setup(
   author = 'Barak Tawily',
   author_email = 'barak.tawily@gmail.com',
   url = 'https://github.com/Quitten/pyhacks',
-  download_url = 'https://github.com/user/reponame/archive/v_01.tar.gz',    # I explain this later on
+  download_url = 'https://github.com/Quitten/pyhacks/releases/v_01.tar.gz',
   keywords = ['threads','queue'],
   install_requires=[
           'uuid',
