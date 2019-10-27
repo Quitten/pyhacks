@@ -8,12 +8,12 @@ Pyhacks library
 """
 
 __title__ = 'pyhacks'
-__version__ = '1.0.1'
+__version__ = '1.0.4'
 __build__ = 0x01001
 __author__ = 'Barak Tawily'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2019 Barak Tawily'
 
-from . import QueueThreads
-from . import Parser
-from . import Logger
+from .QueueThreads import QueueThreads
+from .Parser import Parser
+from .Logger import Logger
