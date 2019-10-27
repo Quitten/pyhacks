@@ -2,6 +2,7 @@
 setup.cfg
 setup.py
 pyhacks/Counter.py
+pyhacks/Item.py
 pyhacks/Logger.py
 pyhacks/Parser.py
 pyhacks/QueueThreads.py

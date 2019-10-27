@@ -1,6 +1,6 @@
 import queue
 import threading
-from constants import *
+from .constants import *
 
 
 def verifyKey(item, keyName):
