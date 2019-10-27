@@ -2,7 +2,6 @@ import queue
 import threading
 from .constants import *
 
-
 def verifyKey(item, keyName):
 	if type(keyName)!=str:
 		raise Exception("Key type excpected to be str but got {}".format(type(keyName)))

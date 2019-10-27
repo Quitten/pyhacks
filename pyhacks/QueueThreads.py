@@ -2,8 +2,8 @@ import os
 import uuid
 import queue
 import threading
-from . import Item
-from . import Counter
+from .Item import Item
+from .Counter import Counter
 from .constants import *
 
 def cleanup():

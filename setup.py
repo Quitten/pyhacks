@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'pyhacks',
   packages = ['pyhacks'],
-  version = '1.0.4',
+  version = '1.0.5',
   license='MIT',
   description = 'Ease developers to use queue/threads functions to handle big amount of data',
   author = 'Barak Tawily',
