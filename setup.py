@@ -18,6 +18,9 @@ setup(
   keywords = ['threads','queue'],
   install_requires=[
           'uuid',
+          'ping3',
+          'dnspython',
+          'whois',
       ],
   classifiers=[
     'Development Status :: 4 - Beta',

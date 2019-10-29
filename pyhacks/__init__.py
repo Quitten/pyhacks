@@ -17,3 +17,4 @@ __copyright__ = 'Copyright 2019 Barak Tawily'
 from .QueueThreads import QueueThreads
 from .Parser import Parser
 from .Logger import Logger
+from .Net import Net
