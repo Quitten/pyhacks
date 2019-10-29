@@ -60,10 +60,7 @@ class QueueThreads():
 		return str(item.get("counter")) in self.uniqSuccess
 
 	def put(self, item):
-		itemObject = Item(item)
-		if not itemObject.hasKey("counter"):
-			itemObject.set("counter", self.counter.plus(1))
-		self.q.put(itemObject)
+		self.q.put(Item(item, self.counter.plus(1)))
 
 	def finish(self):
 		for i in range(self.num_worker_threads):

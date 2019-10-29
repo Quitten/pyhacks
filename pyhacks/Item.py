@@ -1,7 +1,14 @@
 class Item():
     # add default counter
-    def __init__(self, item):
-        self.item = item
+    def __init__(self, item, counter):
+        if type(item) == str:
+            self.item = {"counter": counter, "content": item}
+        elif type(item) == dict:
+            item["counter"] = counter
+            self.item = item
+        else:
+            raise Exception("item is not str or dict")
+
 
     def hasKey(self, keyName):
         return keyName in self.item

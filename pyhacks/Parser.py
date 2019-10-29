@@ -5,8 +5,8 @@ class Parser():
         self.verbose = verbose
 
     def csv(self, fileName, delimiter=",", quotechar="\""):
-        csvfile = open(fileName, 'r')
-        spamreader = csv.reader(csvfile, delimiter=delimiter, quotechar=quotechar)
+        csvFile = open(fileName, "r")
+        spamreader = csv.reader(csvFile, delimiter=delimiter, quotechar=quotechar)
         currentLine = 0
         csvContent = []
 
@@ -26,3 +26,8 @@ class Parser():
             obj["counter"] = currentLine
             csvContent.append(obj)
         return csvContent
+    
+    def text(self, fileName, delimiter="\n"):
+        textFile = open(fileName,"r").read()
+        return textFile.split(delimiter)
+        
