@@ -21,7 +21,6 @@ class Logger():
 	def __init__(self, verbose = False):
 		self.q = queue.Queue()
 		self.thread = self.initThread()
-		self.thread.start()
 		self.verbose = verbose
 
 	def initThread(self):
@@ -35,9 +34,10 @@ class Logger():
 				self._write(logObj["fileName"],logObj["content"])
 				self.q.task_done()
 		t = threading.Thread(target=worker)
+		t.start()
 		return t
 
-	def _write(self, fileName,content):
+	def _write(self, fileName, content):
 		with open(fileName, "a") as myfile:
 			myfile.write("{}\n".format(content))
 
