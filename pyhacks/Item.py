@@ -1,4 +1,4 @@
-class Item():
+class Item:
     # add default counter
     def __init__(self, item, counter):
         if type(item) == str:
@@ -31,6 +31,9 @@ class Item():
     def get(self, keyName):
         self.verifyKey(keyName)
         return self.item[keyName]
+    
+    def keys(self):
+        return self.item.keys()
     
     def set(self, keyName, value):
         self.item[keyName] = value

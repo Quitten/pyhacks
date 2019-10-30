@@ -17,7 +17,7 @@ def verifyKeys(item, keys):
 		verifyKey(item, key)
 	return True
 
-class Logger():
+class Logger:
 	def __init__(self, verbose = False):
 		self.q = queue.Queue()
 		self.thread = self.initThread()

@@ -3,7 +3,7 @@ import whois
 import dns.resolver
 from ping3 import ping, verbose_ping
 
-class Net():
+class Net:
     def __init__(self):
         self.resolver = dns.resolver.Resolver()
         self.records = [
@@ -78,10 +78,10 @@ class Net():
         ]
     
     def replyToPing(self, hostOrIP):
-        ping(hostOrIP) != None
+        return ping(hostOrIP) != None
     
     def resolve(self, hostname):
-        socket.gethostbyname(hostname)
+        return socket.gethostbyname(hostname)
 
     def _queryDNS(self, domain, record):
         res = []

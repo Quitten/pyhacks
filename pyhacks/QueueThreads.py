@@ -13,7 +13,7 @@ def cleanup():
 	except:
 		pass
 
-class QueueThreads():
+class QueueThreads:
 	def __init__(self, handleFunction, num_worker_threads, logger,cleanup = False):
 		self.q = queue.Queue()
 		self.counter = Counter()

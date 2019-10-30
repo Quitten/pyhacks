@@ -21,6 +21,7 @@ setup(
           'ping3',
           'dnspython',
           'whois',
+          'csv',
       ],
   classifiers=[
     'Development Status :: 4 - Beta',

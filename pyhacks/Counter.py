@@ -1,4 +1,4 @@
-class Counter():
+class Counter:
 	def __init__(self, startFrom=0):
 		self.counter = startFrom
 
