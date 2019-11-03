@@ -6,32 +6,29 @@ Will elaborate more when it will get mature enough :)
 # code example
 
 ```python
-from pyhacks import Logger, QueueThreads, Exporter, Parser, Net
+from pyhacks import Net, PyHacks
 
 if __name__ == "__main__":
+	net = Net()
 	def handleItem(item):
 		try:
 			host = item.get("host")
-			item.set("Reply To Ping", net.replyToPing(host))
-			item.set("ip", net.resolve(host))
-			export.put(item)
+			repliedToPing = net.replyToPing(host)
+			ip = net.resolve(host)
+			item.set("Reply To Ping", repliedToPing)
+			item.set("ip", ip)
+			hacks.logger.green("{} {} {}".format(host, repliedToPing, ip))
+			hacks.exporter.put(item)
 		except:
 			pass
 		return True
 	
-	net = Net()
-	logger = Logger()
-	parse = Parser()
-	export = Exporter("output.csv")
+	hacks = PyHacks(handleItem, 25, "output.csv")
+	hosts = hacks.parse.csv("ips.csv")
 	
-	numbersOfThreads = 1
-	x = QueueThreads(handleItem, numbersOfThreads, logger, True)
-	
-	hosts = parse.csv("ips.csv")
 	for host in hosts:
-		x.put(host)
-		
-	x.finish()
-	export.finish()
+		hacks.qt.put(host)
+	
+	hacks.finish()
     
 ```
