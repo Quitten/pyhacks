@@ -3,6 +3,7 @@ import uuid
 import queue
 import threading
 from .Item import Item
+from .Logger import Logger
 from .Counter import Counter
 from .constants import *
 
@@ -14,12 +15,12 @@ def cleanup():
 		pass
 
 class QueueThreads:
-	def __init__(self, handleFunction, num_worker_threads, logger,cleanup = False):
-		self.q = queue.Queue()
-		self.counter = Counter()
+	def __init__(self, handleFunction, num_worker_threads, logger, cleanup = False):
+		self.logger = logger
 		self.threads = []
 		self.uniqSuccess = []
-		self.logger = logger
+		self.q = queue.Queue()
+		self.counter = Counter()
 		self.num_worker_threads = num_worker_threads
 		self.init(handleFunction)
 

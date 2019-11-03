@@ -106,6 +106,14 @@ class Net:
                 res[record] = self._queryDNS(domain, record)
         return res
     
-    def whois(self, domain):        
+    def whois(self, domain):
         # returnObject.name, returnObject.registrar
         return whois.query(domain)
+    
+    #TODO: Implement the following functions
+    # def ssh to server run command and get result
+    # def shodan / censys
+    # def portScan
+    # def passiveDNS
+    # def reverselookup
+    

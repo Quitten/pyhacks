@@ -54,7 +54,6 @@ class Exporter:
 				if key == 'counter':
 					continue
 				data.append(item.get(key))
-			print(data)
 			csv_writer.writerow(data)
 
 	def put(self, item):
