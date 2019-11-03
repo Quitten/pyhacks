@@ -8,8 +8,8 @@ Pyhacks library
 """
 
 __title__ = 'pyhacks'
-__version__ = '1.0.8'
-__build__ = 0x01008
+__version__ = '1.0.10'
+__build__ = 0x010010
 __author__ = 'Barak Tawily'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2019 Barak Tawily'
