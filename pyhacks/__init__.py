@@ -29,6 +29,12 @@ class PyHacks:
         self.num_worker_threads = num_worker_threads
         self.export_file_name = export_file_name
         self.qt = QueueThreads(handle_function, num_worker_threads, self.logger, cleanup)
+    
+    def handle(self, item):
+        self.qt.put(item)
+    
+    def export(self, item):
+        self.exporter.put(item)
 
     def finish(self):
         self.qt.finish()

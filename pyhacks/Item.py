@@ -9,7 +9,6 @@ class Item:
         else:
             raise Exception("item is not str or dict")
 
-
     def hasKey(self, keyName):
         return keyName in self.item
 
