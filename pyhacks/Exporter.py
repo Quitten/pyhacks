@@ -47,7 +47,7 @@ class Exporter:
 	def writeCSV(self, item):
 		with open(self.fileName, mode='a') as csv_file:
 			csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-			if item.get('counter') == 1:
+			if csv_file.tell() == 0:
 				csv_writer.writerow(item.keys())
 			data = [item.get('counter')]
 			for key in item.keys():
