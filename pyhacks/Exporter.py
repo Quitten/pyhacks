@@ -48,11 +48,10 @@ class Exporter:
 		with open(self.fileName, mode='a') as csv_file:
 			csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 			if csv_file.tell() == 0:
+				# TODO: add quotes to keys
 				csv_writer.writerow(item.keys())
-			data = [item.get('counter')]
+			data = []
 			for key in item.keys():
-				if key == 'counter':
-					continue
 				data.append(item.get(key))
 			csv_writer.writerow(data)
 
