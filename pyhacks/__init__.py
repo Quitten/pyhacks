@@ -18,6 +18,7 @@ from .QueueThreads import QueueThreads
 from .Exporter import Exporter
 from .Parser import Parser
 from .Logger import Logger
+from .Headless import Headless
 from .Net import Net
 # TOOD: Add headless chrome module
 
