@@ -6,29 +6,29 @@ Will elaborate more when it will get mature enough :)
 # code example
 
 ```python
-from pyhacks import Net, PyHacks
+from pyhacks import PyHacks, Net
 
 if __name__ == "__main__":
 	net = Net()
-	def handleItem(item):
-		try:
-			host = item.get("host")
-			repliedToPing = net.replyToPing(host)
-			ip = net.resolve(host)
-			item.set("Reply To Ping", repliedToPing)
-			item.set("ip", ip)
-			hacks.logger.green("{} {} {}".format(host, repliedToPing, ip))
-			hacks.exporter.put(item)
-		except:
-			pass
+
+	def handle_item(item):
+		host = item.get("host")
+		url = item.get("url")
+		replied_to_ping = net.reply_to_ping(host)
+		ip = net.resolve(host)
+		item.set("Reply To Ping", replied_to_ping)
+		item.set("ip", ip)
+		hacks.logger.green("{} {} {}".format(host, replied_to_ping, ip))
+		hacks.exporter.put(item)
 		return True
 	
-	hacks = PyHacks(handleItem, 25, "output.csv")
+	hacks = PyHacks(handle_item, 25, "output.csv")
 	hosts = hacks.parse.csv("ips.csv")
 	
 	for host in hosts:
 		hacks.qt.put(host)
 	
 	hacks.finish()
+
     
 ```
