@@ -22,9 +22,9 @@ from .Net import Net
 # TOOD: Add headless chrome module
 
 class PyHacks:
-    def __init__(self, handle_function, num_worker_threads, export_file_name, cleanup = False):
+    def __init__(self, handle_function, num_worker_threads, export_file_name, cleanup = False, verbose = False):
         self.parse = Parser()
-        self.logger = Logger()
+        self.logger = Logger(verbose)
         self.exporter = Exporter(export_file_name)
         self.num_worker_threads = num_worker_threads
         self.export_file_name = export_file_name

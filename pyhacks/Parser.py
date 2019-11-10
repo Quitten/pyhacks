@@ -7,13 +7,13 @@ class Parser:
     def csv(self, file_name, delimiter=",", quotechar="\""):
         csvFile = open(file_name, "r")
         spamreader = csv.reader(csvFile, delimiter=delimiter, quotechar=quotechar)
-        currentLine = 0
+        current_line = 0
         csv_content = []
 
         keys = []
         for row in spamreader:
-            currentLine = currentLine + 1
-            if currentLine == 1:
+            current_line = current_line + 1
+            if current_line == 1:
                 keys = row
                 continue
             obj = {}
@@ -23,7 +23,7 @@ class Parser:
             for i in range(len(keys)):
                 if row[i] != "":
                     obj[keys[i]] = row[i]
-            obj["counter"] = currentLine
+            obj["counter"] = current_line
             csv_content.append(obj)
         return csv_content
     

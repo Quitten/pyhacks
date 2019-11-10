@@ -21,13 +21,15 @@ class QueueThreads:
 		self.success_list = []
 		self.q = queue.Queue()
 		self.counter = Counter()
+		self.cleanup = cleanup
 		self.num_worker_threads = num_worker_threads
 		self.init(handle_function)
 
 	def init(self, handle_function):
-		if cleanup:
+		if self.cleanup:
 		    cleanup()
-		if os.path.exists(SUCESS_FILE_NAME):
+
+		if os.path.exists("{}/{}".format(os.getcwd(), SUCESS_FILE_NAME)):
 			self.success_list = os.popen('sort {} | uniq'.format(SUCESS_FILE_NAME)).read()
 			with open(SUCESS_FILE_NAME, "w") as myfile:
 				myfile.write(self.success_list)
@@ -40,7 +42,7 @@ class QueueThreads:
 					break
 				item.verify_key("counter")
 				if self.success_list != []:
-					if self.isItemHanlded(item):
+					if self.is_item_handled(item):
 						self.logger.debug("Skipping item #{}, already handeled".format(item.get("counter")))
 						self.q.task_done()
 						continue
@@ -57,7 +59,7 @@ class QueueThreads:
 			self.logger.debug("Initializing thread #{}".format(len(self.threads)))
 		self.logger.debug("ID: {}".format(uuid.uuid4()))
 
-	def isItemHanlded(self, item):
+	def is_item_handled(self, item):
 		return str(item.get("counter")) in self.success_list
 
 	def put(self, item):
