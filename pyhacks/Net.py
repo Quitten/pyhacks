@@ -77,13 +77,13 @@ class Net:
                 'DLV',
         ]
     
-    def replyToPing(self, hostOrIP):
-        return ping(hostOrIP) != None
+    def reply_to_ping(self, host_or_ip):
+        return ping(host_or_ip) != None
     
     def resolve(self, hostname):
         return socket.gethostbyname(hostname)
 
-    def _queryDNS(self, domain, record):
+    def _query_dns(self, domain, record):
         res = []
         try:
             for rdata in self.resolver.query(domain, record):
@@ -97,13 +97,13 @@ class Net:
         res = {}
         if record == 'all':
             for record in self.records:
-                dnsRes = self._queryDNS(domain, record)
+                dnsRes = self._query_dns(domain, record)
                 if dnsRes != []:
-                    res[record] = self._queryDNS(domain, record)
+                    res[record] = self._query_dns(domain, record)
         else:
-            dnsRes = self._queryDNS(domain, record)
+            dnsRes = self._query_dns(domain, record)
             if dnsRes != []:
-                res[record] = self._queryDNS(domain, record)
+                res[record] = self._query_dns(domain, record)
         return res
     
     def whois(self, domain):

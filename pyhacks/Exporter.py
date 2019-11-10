@@ -4,36 +4,36 @@ import queue
 import threading
 
 class Exporter:
-	def __init__(self, fileName, delimiter=' '):
+	def __init__(self, file_name, delimiter=' '):
 		self.q = queue.Queue()
-		self.fileName = fileName
+		self.file_name = file_name
 		self.delimiter = delimiter
-		self.thread = self.initThread()
-		if (os.path.exists(self.fileName)):
+		self.thread = self.init_thread()
+		if (os.path.exists(self.file_name)):
 			userInput = input('Export file exists, overwrite file? [y/n]:\n')
 			if userInput == 'y':
-				os.remove(self.fileName)
-		self.fileFormat = os.path.splitext(fileName)[1]
+				os.remove(self.file_name)
+		self.file_format = os.path.splitext(file_name)[1]
 
-	def initThread(self):
+	def init_thread(self):
 		def worker():
 			while True:
-				item = self.q.get()				
+				item = self.q.get()
 				if item is None:
 					self.q.task_done()
 					break
 
-				if self.fileFormat == '.txt':
-					self.writeTXT(item)
-				elif self.fileFormat == '.csv':
-					self.writeCSV(item)
+				if self.file_format == '.txt':
+					self.write_txt(item)
+				elif self.file_format == '.csv':
+					self.write_csv(item)
 
 				self.q.task_done()
 		t = threading.Thread(target=worker)
 		t.start()
 		return t
     
-	def writeTXT(self, item):
+	def write_txt(self, item):
 		content = ''
 		content = "{}{} ".format(content, item.get('counter'))
 		for key in item.keys():
@@ -41,11 +41,11 @@ class Exporter:
 				continue
 			content = "{}{}{}".format(content, item.get(key), self.delimiter)
 
-		with open(self.fileName, "a") as myfile:
+		with open(self.file_name, "a") as myfile:
 			myfile.write("{}\n".format(content))
 
-	def writeCSV(self, item):
-		with open(self.fileName, mode='a') as csv_file:
+	def write_csv(self, item):
+		with open(self.file_name, mode='a') as csv_file:
 			csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 			if csv_file.tell() == 0:
 				# TODO: add quotes to keys

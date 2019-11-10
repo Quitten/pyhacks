@@ -15,22 +15,22 @@ def cleanup():
 		pass
 
 class QueueThreads:
-	def __init__(self, handleFunction, num_worker_threads, logger, cleanup = False):
+	def __init__(self, handle_function, num_worker_threads, logger, cleanup = False):
 		self.logger = logger
 		self.threads = []
-		self.uniqSuccess = []
+		self.success_list = []
 		self.q = queue.Queue()
 		self.counter = Counter()
 		self.num_worker_threads = num_worker_threads
-		self.init(handleFunction)
+		self.init(handle_function)
 
-	def init(self, handleFunction):
+	def init(self, handle_function):
 		if cleanup:
 		    cleanup()
 		if os.path.exists(SUCESS_FILE_NAME):
-			self.uniqSuccess = os.popen('sort {} | uniq'.format(SUCESS_FILE_NAME)).read()
+			self.success_list = os.popen('sort {} | uniq'.format(SUCESS_FILE_NAME)).read()
 			with open(SUCESS_FILE_NAME, "w") as myfile:
-				myfile.write(self.uniqSuccess)
+				myfile.write(self.success_list)
 
 		def worker():
 			while True:
@@ -38,15 +38,15 @@ class QueueThreads:
 				if item is None:
 					self.q.task_done()
 					break
-				item.verifyKey("counter")
-				if self.uniqSuccess != []:
+				item.verify_key("counter")
+				if self.success_list != []:
 					if self.isItemHanlded(item):
 						self.logger.debug("Skipping item #{}, already handeled".format(item.get("counter")))
 						self.q.task_done()
 						continue
 
 				self.logger.debug("Handling item #{}".format(item.get("counter")))
-				if handleFunction(item):
+				if handle_function(item):
 					self.logger.success(item)
 				self.q.task_done()
 
@@ -58,7 +58,7 @@ class QueueThreads:
 		self.logger.debug("ID: {}".format(uuid.uuid4()))
 
 	def isItemHanlded(self, item):
-		return str(item.get("counter")) in self.uniqSuccess
+		return str(item.get("counter")) in self.success_list
 
 	def put(self, item):
 		self.q.put(Item(item, self.counter.plus(1)))

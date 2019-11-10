@@ -4,11 +4,11 @@ class Parser:
     def __init__(self, verbose = False):
         self.verbose = verbose
 
-    def csv(self, fileName, delimiter=",", quotechar="\""):
-        csvFile = open(fileName, "r")
+    def csv(self, file_name, delimiter=",", quotechar="\""):
+        csvFile = open(file_name, "r")
         spamreader = csv.reader(csvFile, delimiter=delimiter, quotechar=quotechar)
         currentLine = 0
-        csvContent = []
+        csv_content = []
 
         keys = []
         for row in spamreader:
@@ -24,10 +24,10 @@ class Parser:
                 if row[i] != "":
                     obj[keys[i]] = row[i]
             obj["counter"] = currentLine
-            csvContent.append(obj)
-        return csvContent
+            csv_content.append(obj)
+        return csv_content
     
-    def text(self, fileName, delimiter="\n"):
-        textFile = open(fileName,"r").read()
+    def text(self, file_name, delimiter="\n"):
+        textFile = open(file_name,"r").read()
         return textFile.split(delimiter)
         
