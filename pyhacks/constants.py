@@ -1,2 +1,6 @@
-LOG_FILE_NAME = "log.txt"
-SUCESS_FILE_NAME = "success.txt"
+LOG_FILE_NAME = "logs/log.txt"
+SUCESS_FILE_NAME = "logs/success.txt"
+FAIL_FILE_NAME = "logs/fail.txt"
+EXCEPTION_FILE_NAME = "logs/exception.txt"
+
+ALL_PATHS = [LOG_FILE_NAME, SUCESS_FILE_NAME, FAIL_FILE_NAME, EXCEPTION_FILE_NAME]
