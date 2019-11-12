@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 setup(
   name = 'pyhacks',
   packages = ['pyhacks'],
-  version = '1.0.13',
+  version = '1.0.14',
   license='MIT',
   description = 'Ease developers to use queue/threads functions to handle big amount of data',
   long_description_content_type="text/markdown",
