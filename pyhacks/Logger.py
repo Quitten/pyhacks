@@ -1,3 +1,4 @@
+import os
 import queue
 import threading
 from .constants import *
@@ -24,14 +25,19 @@ class Logger:
 		self.verbose = verbose
 
 	def init_thread(self):
+		logs_dir_path = "{}/logs/".format(os.getcwd())
+		if not os.path.exists(logs_dir_path):
+			os.mkdir(logs_dir_path)
 		def worker():
 			while True:
 				log_object = self.q.get()
 				if log_object is None:
 					self.q.task_done()
 					break
-				verify_keys(log_object,["file_name","content"])
-				self._write(log_object["file_name"],log_object["content"])
+				verify_keys(log_object,["file_name", "content"])
+				self._write(log_object["file_name"], log_object["content"])
+				if (log_object["file_name"] != LOG_FILE_NAME):
+					self._write(LOG_FILE_NAME, log_object["content"])
 				self.q.task_done()
 		t = threading.Thread(target=worker)
 		t.start()
@@ -68,6 +74,14 @@ class Logger:
 	def success(self, item):
 		item.verify_key("counter")
 		self.q.put({"file_name":SUCESS_FILE_NAME, "content":item.get("counter")})
+
+	def fail(self, item):
+		item.verify_key("counter")
+		self.q.put({"file_name":FAIL_FILE_NAME, "content":item.get("counter")})
+
+	def exception(self, obj):
+		obj.get("item").verify_key("counter")
+		self.q.put({"file_name":EXCEPTION_FILE_NAME, "content":obj})
 
 	def put(self, item):
 		self.q.put(item)
