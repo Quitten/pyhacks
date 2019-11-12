@@ -4,7 +4,7 @@ Python module to ease writing scripts go over big amount of data in order to per
 Will elaborate more when it will get mature enough :)
 
 # capabilities
-#####PyHacks
+##### PyHacks
 Using all below capabilities to easily manage threads and queue to perform operations on Item objects.
 
 
@@ -39,7 +39,7 @@ if __name__ == "__main__":
 ```
 
 
-#####QueueThreads
+##### QueueThreads
 QueueThreads class allows you to manage queue and threads easily.
 ```python
 qt = QueueThreads(handle_function, num_worker_threads, logger)
@@ -47,7 +47,7 @@ qt.put({"counter":1, "key1":"value1"})
 qt.finish() # waiting until job is finished
 ```
 
-######parameters
+###### parameters
 handle_function - a function recevies item parameter from queue, will be used in all threads defined, return value has to be bool
 ```python
 def handle_item(item):
@@ -67,7 +67,7 @@ def handle_item(item):
 num_worker_threads - numbers of threads used to run handle_functions on queue items
 logger - a Logger instance to be used for automatic logging
 
-#####Parser
+##### Parser
 Parse files and returns list of Item objects
 ```python
 parse = Parser()
@@ -77,7 +77,7 @@ for item in items:
 ```
 
 
-#####Logger
+##### Logger
 Easy logging mechanism + writing into files under logs directory, used by QueueThreads for autoamtic logging
 ```python
 logger = Logger(verbose=False)
@@ -86,7 +86,7 @@ logger.red("text")
 logger.yellow("text")
 ```
 
-#####Exporter
+##### Exporter
 Exporting Item objects into a csv/txt file
 
 ```python
