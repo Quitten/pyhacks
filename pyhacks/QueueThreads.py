@@ -9,8 +9,8 @@ from .constants import *
 
 def cleanup():
 	try:
-		os.remove(LOG_FILE_NAME)
-		os.remove(SUCESS_FILE_NAME)
+		for path in ALL_PATHS:
+			os.remove(path)
 	except:
 		pass
 
@@ -48,8 +48,25 @@ class QueueThreads:
 						continue
 
 				self.logger.debug("Handling item #{}".format(item.get("counter")))
-				if handle_function(item):
+				try:
+					handle_function_result = handle_function(item)
+				except Exception as err:
+					self.logger.red("Error: {}".format(err))
+					self.logger.exception({"exception": err, "item": item})
+					self.logger.fail(item)
+					self.q.task_done()
+					continue
+				if type(handle_function_result) != bool:
+					# TODO: use self.logger.finish() to wait error logs will be written
+					self.logger.red("Error: handle function return value is not boolean")
+					self.logger.fail(item)
+					self.q.task_done()
+					os._exit(1)
+					
+				elif handle_function_result:
 					self.logger.success(item)
+				else:
+					self.logger.fail(item)
 				self.q.task_done()
 
 		for i in range(self.num_worker_threads):
