@@ -8,6 +8,9 @@ class Item:
             self.item = item
         else:
             raise Exception("item is not str or dict")
+    
+    def ___str___(self):
+        return self.item
 
     def has_key(self, key_name):
         return key_name in self.item
