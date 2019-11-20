@@ -8,8 +8,8 @@ Pyhacks library
 """
 
 __title__ = 'pyhacks'
-__version__ = '1.0.17'
-__build__ = 0x010017
+__version__ = '1.0.18'
+__build__ = 0x010018
 __author__ = 'Barak Tawily'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2019 Barak Tawily'
@@ -33,6 +33,12 @@ class PyHacks:
     def handle(self, item):
         self.qt.put(item)
     
+    def add_to_queue(self, item, key_name=""):
+        if type(item) == str and key_name != "":
+            self.qt.put({key_name: item})
+        else:
+            self.qt.put(item)
+
     def export(self, item):
         self.exporter.put(item)
 
