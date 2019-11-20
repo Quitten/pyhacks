@@ -51,7 +51,7 @@ class QueueThreads:
 				try:
 					handle_function_result = handle_function(item)
 				except Exception as err:
-					self.logger.red("Error: {}".format(err))
+					self.logger.red("Error in handle function: {}".format(err))
 					self.logger.exception({"exception": err, "item": item})
 					self.logger.fail(item)
 					self.q.task_done()
