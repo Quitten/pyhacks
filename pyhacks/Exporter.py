@@ -10,8 +10,8 @@ class Exporter:
 		self.delimiter = delimiter
 		self.thread = self.init_thread()
 		if (os.path.exists(self.file_name)):
-			userInput = input('Export file exists, overwrite file? [y/n]:\n')
-			if userInput == 'y':
+			userInput = input('Export file exists, overwrite file? [Y/n]:\n')
+			if userInput.lower() == 'y' or userInput == '':
 				os.remove(self.file_name)
 		self.file_format = os.path.splitext(file_name)[1]
 
