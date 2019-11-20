@@ -1,4 +1,6 @@
 import csv
+from io import StringIO
+import xml.etree.ElementTree as ET
 
 class Parser:
     def __init__(self, verbose = False):
@@ -26,6 +28,25 @@ class Parser:
             obj["counter"] = current_line
             csv_content.append(obj)
         return csv_content
+
+    def xml(self, file_name_or_string):
+        root = None
+        if file_name_or_string.endswith(".xml"):
+            tree = ET.parse('country_data.xml')
+            root = tree.getroot()
+        else:
+            it = ET.iterparse(StringIO(file_name_or_string))
+            for _, el in it:
+                prefix, has_namespace, postfix = el.tag.partition('}')
+                if has_namespace:
+                    el.tag = postfix # strip all namespaces
+            root = it.root
+        # Usage:
+        # for child in root:
+        #    print(child.tag)
+        #    print(child.attrib)
+        return root
+
     
     def text(self, file_name, delimiter="\n"):
         textFile = open(file_name,"r").read()
