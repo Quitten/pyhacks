@@ -44,8 +44,12 @@ class Logger:
 		return t
 
 	def _write(self, file_name, content):
-		with open(file_name, "a") as myfile:
-			myfile.write("{}\n".format(content))
+		try:
+			with open(file_name, "a") as myfile:
+				myfile.write("{}\n".format(content))
+		except Exception as err:
+			self.red("Writing error: {}".format(err))
+			os._exit(1)
 
 	def green(self, content, file_name = LOG_FILE_NAME, verbose = True):
 		if verbose:
