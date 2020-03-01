@@ -23,10 +23,10 @@ class Parser:
             if len(keys) != len(row):
                 raise Exception("Malformed CSV file key length != row length")
             for i in range(len(keys)):
-                if row[i] != "":
-                    obj[keys[i]] = row[i]
+                obj[keys[i]] = row[i]
             obj["counter"] = current_line
             csv_content.append(obj)
+            
         return csv_content
 
     def xml(self, file_name_or_string):
