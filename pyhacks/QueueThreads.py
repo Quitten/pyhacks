@@ -80,7 +80,7 @@ class QueueThreads:
 		return str(item.get("counter")) in self.success_list
 
 	def put(self, item):
-		self.q.put(Item(item, self.counter.plus(1)))
+		self.q.put(item)
 
 	def finish(self):
 		for i in range(self.num_worker_threads):

@@ -1,6 +1,8 @@
 import csv
+import json
 from io import StringIO
 import xml.etree.ElementTree as ET
+from .Item import Item
 
 class Parser:
     def __init__(self, verbose = False):
@@ -24,8 +26,8 @@ class Parser:
                 raise Exception("Malformed CSV file key length != row length")
             for i in range(len(keys)):
                 obj[keys[i]] = row[i]
-            obj["counter"] = current_line
-            csv_content.append(obj)
+
+            csv_content.append(Item(obj, current_line))
             
         return csv_content
 
@@ -46,9 +48,21 @@ class Parser:
         #    print(child.tag)
         #    print(child.attrib)
         return root
-
     
     def text(self, file_name, delimiter="\n"):
         textFile = open(file_name,"r").read()
         return textFile.split(delimiter)
+
+    def json(self, file_name):
+        objs = json.loads(open(file_name,"rb").read())
+        counter = 0
+        items = []
+        for obj in objs:
+            counter = counter + 1
+            # obj["counter"] = counter
+            items.append(Item(obj, counter))
+        
+        return items
+
+            
         
